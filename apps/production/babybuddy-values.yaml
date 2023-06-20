@@ -10,7 +10,7 @@ spec:
   values:
     image:
       repository: linuxserver/babybuddy
-      tag: 1.14.0
+      tag: 1.16.0
       pullPolicy: IfNotPresent
     env:
       TZ: Asia/Kolkata
