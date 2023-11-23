@@ -25,7 +25,7 @@ spec:
               value: "1000"
             - name: PUID
               value: "1000"
-          image: mariadb:10.11.3
+          image: mariadb:11.2.2
           name: mariadb
           args: ["--transaction-isolation=READ-COMMITTED", "--binlog-format=ROW", "--skip-innodb-read-only-compressed"]
           ports:
