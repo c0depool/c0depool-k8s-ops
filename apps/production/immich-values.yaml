@@ -13,7 +13,7 @@ spec:
       REDIS_PASSWORD: '{{ .Values.redis.auth.password }}'
     image:
       # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
-      tag: v1.122.3
+      tag: v1.123.0
     immich:
       persistence:
         library:
