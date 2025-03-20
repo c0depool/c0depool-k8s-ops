@@ -11,7 +11,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 30.0.5-fpm-alpine
+      tag: 30.0.8-fpm-alpine
     ingress:
       enabled: true
       className: nginx
