@@ -17,7 +17,7 @@ spec:
       DB_PASSWORD: ${IMMICH_DATABASE_PASSWORD}
     image:
       # renovate: datasource=docker depName=ghcr.io/immich-app/immich-server
-      tag: v1.132.3
+      tag: v1.134.0
     immich:
       persistence:
         library:
