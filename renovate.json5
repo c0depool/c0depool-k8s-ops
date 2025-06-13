@@ -1,137 +1,214 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
   ],
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "flux": {
-    "fileMatch": ["clusters/.+\\.ya?ml$"]
+  dependencyDashboardTitle: 'Renovate Dashboard 🤖',
+  flux: {
+    managerFilePatterns: [
+      '/clusters/.+\\.ya?ml$/',
+    ],
   },
-  "helm-values": {
-    "fileMatch": ["clusters/.+\\.ya?ml$","apps/.+\\.ya?ml$","infrastructure/.+\\.ya?ml$"]
+  'helm-values': {
+    managerFilePatterns: [
+      '/clusters/.+\\.ya?ml$/',
+      '/apps/.+\\.ya?ml$/',
+      '/infrastructure/.+\\.ya?ml$/',
+    ],
   },
-  "kubernetes": {
-    "fileMatch": ["clusters/.+\\.ya?ml$","apps/.+\\.ya?ml$","infrastructure/.+\\.ya?ml$"]
+  kubernetes: {
+    managerFilePatterns: [
+      '/clusters/.+\\.ya?ml$/',
+      '/apps/.+\\.ya?ml$/',
+      '/infrastructure/.+\\.ya?ml$/',
+    ],
   },
-  "regexManagers": [
+  customManagers: [
     {
-      "description": "Match Helm values for non-standard yamls",
-      "fileMatch": "infrastructure/.+\\.ya?ml$",
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "repository:\\s?\"?(?<depName>[^\\s\"]*)\"?\\s*?tag:\\s?\"?(?<currentValue>[^\\s\"]*)\"?"
+      customType: 'regex',
+      description: 'Match Helm values for non-standard yamls',
+      managerFilePatterns: [
+        '/infrastructure/.+\\.ya?ml$/',
       ],
-      "datasourceTemplate": "docker"
+      matchStringsStrategy: 'any',
+      matchStrings: [
+        'repository:\\s?"?(?<depName>[^\\s"]*)"?\\s*?tag:\\s?"?(?<currentValue>[^\\s"]*)"?',
+      ],
+      datasourceTemplate: 'docker',
     },
     {
-      "description": "Match Helm Releases for helm charts",
-      "fileMatch": ["apps/.+\\.ya?ml$","infrastructure/.+\\.ya?ml$"],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "chart:\\s?\"?(?<depName>[^\\s\"]*)\"?\\s*?version:\\s?\"?(?<currentValue>[^\\s\"]*)\"?"
+      customType: 'regex',
+      description: 'Match Helm Releases for helm charts',
+      managerFilePatterns: [
+        '/apps/.+\\.ya?ml$/',
+        '/infrastructure/.+\\.ya?ml$/',
       ],
-      "datasourceTemplate": "helm"
+      matchStringsStrategy: 'any',
+      matchStrings: [
+        'chart:\\s?"?(?<depName>[^\\s"]*)"?\\s*?version:\\s?"?(?<currentValue>[^\\s"]*)"?',
+      ],
+      datasourceTemplate: 'helm',
     },
     {
-      "description": ["Process custom dependencies"],
-      "fileMatch": ["apps/.+\\.ya?ml$","infrastructure/.+\\.ya?ml$"],
-      "matchStrings": [
-        // # renovate: datasource=github-releases depName=k3s-io/k3s
-        // k3s_release_version: &version v1.29.0+k3s1
-        // # renovate: datasource=helm depName=cilium repository=https://helm.cilium.io
-        // version: 1.15.1
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)",
-        // # renovate: datasource=github-releases depName=rancher/system-upgrade-controller
-        // https://github.com/rancher/system-upgrade-controller/releases/download/v0.13.2/crd.yaml
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)"
+      customType: 'regex',
+      description: [
+        'Process custom dependencies',
       ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
-    }
+      managerFilePatterns: [
+        '/apps/.+\\.ya?ml$/',
+        '/infrastructure/.+\\.ya?ml$/',
+      ],
+      matchStrings: [
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)',
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)',
+      ],
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}',
+    },
   ],
-  "packageRules": [
+  packageRules: [
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "netdata"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://netdata.github.io/helmchart/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'netdata',
+      ],
+      registryUrls: [
+        'https://netdata.github.io/helmchart/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "ingress-nginx"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://kubernetes.github.io/ingress-nginx/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'ingress-nginx',
+      ],
+      registryUrls: [
+        'https://kubernetes.github.io/ingress-nginx/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "app-template"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://bjw-s-labs.github.io/helm-charts/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'app-template',
+      ],
+      registryUrls: [
+        'https://bjw-s-labs.github.io/helm-charts/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "wireguard",
-        "photoprism",
-        "filebrowser"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://k8s-at-home.com/charts/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'wireguard',
+        'photoprism',
+        'filebrowser',
+      ],
+      registryUrls: [
+        'https://k8s-at-home.com/charts/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "intel-device-plugins-operator",
-        "intel-device-plugins-gpu"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://intel.github.io/helm-charts/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'intel-device-plugins-operator',
+        'intel-device-plugins-gpu',
+      ],
+      registryUrls: [
+        'https://intel.github.io/helm-charts/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "mariadb",
-        "redis"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://charts.bitnami.com/bitnami/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'mariadb',
+        'redis',
+      ],
+      registryUrls: [
+        'https://charts.bitnami.com/bitnami/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "nextcloud"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://nextcloud.github.io/helm/"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'nextcloud',
+      ],
+      registryUrls: [
+        'https://nextcloud.github.io/helm/',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "immich"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://immich-app.github.io/immich-charts"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'immich',
+      ],
+      registryUrls: [
+        'https://immich-app.github.io/immich-charts',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "authentik"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://charts.goauthentik.io"]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'authentik',
+      ],
+      registryUrls: [
+        'https://charts.goauthentik.io',
+      ],
     },
     {
-      "datasources": ["helm"],
-      "managers": ["regex"],
-      "packageNames": [
-        "cloudnative-pg"
+      matchDatasources: [
+        'helm',
       ],
-      "registryUrls": ["https://cloudnative-pg.github.io/charts"]
-    }
-  ]
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'cloudnative-pg',
+      ],
+      registryUrls: [
+        'https://cloudnative-pg.github.io/charts',
+      ],
+    },
+  ],
 }
