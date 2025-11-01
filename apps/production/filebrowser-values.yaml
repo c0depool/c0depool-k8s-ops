@@ -15,7 +15,7 @@ spec:
           main:
             image:
               repository: filebrowser/filebrowser
-              tag: v2.44.2
+              tag: v2.45.0
             env:
               TZ: "${TIMEZONE}"
     service:
