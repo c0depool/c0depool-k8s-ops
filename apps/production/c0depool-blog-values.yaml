@@ -15,7 +15,7 @@ spec:
           main:
             image:
               repository: ghcr.io/c0depool/c0depool-blog
-              tag: v2.2.0
+              tag: v2.2.1
     service:
       main:
         controller: main
