@@ -9,7 +9,7 @@ spec:
     spec:
       chart: reflector
       # renovate: datasource=docker depName=ghcr.io/emberstack/helm-charts/reflector
-      version: 9.1.39
+      version: 9.1.45
       sourceRef:
         kind: HelmRepository
         name: emberstack
