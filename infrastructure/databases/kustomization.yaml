@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: databases
 resources:
   - namespace.yaml
-  - mariadb
+  # - mariadb
   - mariadb-operator
   - cloudnative-pg
