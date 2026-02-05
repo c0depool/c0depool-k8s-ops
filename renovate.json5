@@ -148,21 +148,6 @@
         'custom.regex',
       ],
       matchPackageNames: [
-        'mariadb',
-        'redis',
-      ],
-      registryUrls: [
-        'https://charts.bitnami.com/bitnami/',
-      ],
-    },
-    {
-      matchDatasources: [
-        'helm',
-      ],
-      matchManagers: [
-        'custom.regex',
-      ],
-      matchPackageNames: [
         'nextcloud',
       ],
       registryUrls: [
