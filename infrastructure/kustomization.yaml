@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - sources
   - wireguard
+  - gateways
   #- wg-easy
   - databases
   - ingress-nginx

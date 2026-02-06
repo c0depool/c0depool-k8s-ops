@@ -10,6 +10,7 @@ data:
   DNS_SERVER: 192.168.0.226
   HA_SERVER: 192.168.0.149
   INGRESS_LB_IP: 192.168.0.193
+  GATEWAY_LB_IP: 192.168.0.194
   MARIADB_SERVICE: mariadb-cluster.databases.svc.cluster.local
   IMMICH_POSTGRES_SERVICE: immich-postgres-rw.databases.svc.cluster.local
   REDIS_SERVICE: redis-master.redis.svc.cluster.local
