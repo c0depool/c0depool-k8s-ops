@@ -25,15 +25,24 @@ spec:
       postgresql:
         password: "${AUTHENTIK_DATABASE_PASSWORD}"
     server:
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-          - &host "auth.${PUBLIC_DOMAIN}"
-        tls:
-          - secretName: "${CERT_SECRET_NAME}"
-            hosts:
-            - *host
+      # ingress:
+      #   enabled: true
+      #   ingressClassName: nginx
+      #   hosts:
+      #     - &host "auth.${PUBLIC_DOMAIN}"
+      #   tls:
+      #     - secretName: "${CERT_SECRET_NAME}"
+      #       hosts:
+      #       - *host
+      route:
+        main:
+          enabled: true
+          kind: HTTPRoute
+          hostnames:
+            - auth.${PUBLIC_DOMAIN}
+          parentRefs:
+            - name: c0depool-gateway
+              namespace: gateways
     postgresql:
       enabled: true
       auth:
