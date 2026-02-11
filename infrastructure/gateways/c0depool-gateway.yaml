@@ -7,7 +7,7 @@ spec:
   addresses:
     - type: IPAddress
       value: ${GATEWAY_LB_IP}
-  gatewayClassName: envoy-gateway
+  gatewayClassName: cilium
   listeners:
     # HTTP
     - name: http
