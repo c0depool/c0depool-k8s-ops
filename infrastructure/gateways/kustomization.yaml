@@ -4,4 +4,4 @@ namespace: gateways
 resources:
   - namespace.yaml
   - c0depool-gateway.yaml
-  - http-to-https-redirect.yaml
+  # - http-to-https-redirect.yaml
