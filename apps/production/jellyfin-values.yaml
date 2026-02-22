@@ -64,7 +64,6 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
         hostnames:
           - jellyfin.${PUBLIC_DOMAIN}
         rules:
