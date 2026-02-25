@@ -6,10 +6,10 @@ metadata:
 spec:
   infrastructure:
     annotations:
-      "io.cilium/lb-ipam-ips": "${GATEWAY_LB_IP}"
-  # addresses:
-  #   - type: IPAddress
-  #     value: ${GATEWAY_LB_IP}
+      "lbipam.cilium.io/ips": "${GATEWAY_LB_IP}"
+  addresses:
+    - type: IPAddress
+      value: ${GATEWAY_LB_IP}
   gatewayClassName: envoy-gateway
   listeners:
     # HTTP
