@@ -6,7 +6,7 @@ metadata:
 spec:
   infrastructure:
     annotations:
-      "lbipam.cilium.io/ips": "${GATEWAY_LB_IP}"
+      "io.cilium/lb-ipam-ips": "${GATEWAY_LB_IP}"
   addresses:
     - type: IPAddress
       value: ${GATEWAY_LB_IP}
