@@ -66,6 +66,7 @@ spec:
           parentRefs:
             - name: c0depool-gateway
               namespace: gateways
+              sectionName: https
           hostnames:
             - photos.${PUBLIC_DOMAIN}
           rules:

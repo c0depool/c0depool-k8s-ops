@@ -40,6 +40,7 @@ spec:
   parentRefs:
     - name: c0depool-gateway
       namespace: gateways
+      sectionName: https
   rules:
     - backendRefs:
       - name: adguard
@@ -60,6 +61,7 @@ spec:
   parentRefs:
     - name: c0depool-gateway
       namespace: gateways
+      sectionName: https
   rules:
     - backendRefs:
       - name: adguard
