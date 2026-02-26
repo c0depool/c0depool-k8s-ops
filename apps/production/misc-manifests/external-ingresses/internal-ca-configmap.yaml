@@ -5,4 +5,5 @@ metadata:
   name: internal-ca
   namespace: external-ingresses
 data:
-  ca.crt: ${INTERNAL_CA_CERT}
+  ca.crt: |
+    ${INTERNAL_CA_CERT}
