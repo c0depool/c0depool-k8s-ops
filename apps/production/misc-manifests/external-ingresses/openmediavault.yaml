@@ -61,7 +61,7 @@ metadata:
   namespace: external-ingresses
 spec:
   hostnames:
-    - &host omv.internal.${PUBLIC_DOMAIN}
+    - omv.internal.${PUBLIC_DOMAIN}
   parentRefs:
     - name: c0depool-gateway
       namespace: gateways
@@ -86,7 +86,7 @@ spec:
       kind: Service
       name: openmediavault
   validation:
-    hostname: *host
+    hostname: omv.internal.${PUBLIC_DOMAIN}
     caCertificateRefs:
       - name: internal-ca
         kind: ConfigMap
