@@ -6,11 +6,11 @@ metadata:
 spec:
   infrastructure:
     annotations:
-      "io.cilium/lb-ipam-ips": "${GATEWAY_LB_IP}"
-    # parametersRef:
-    #   group: gateway.envoyproxy.io
-    #   kind: EnvoyProxy
-    #   name: c0depool-proxy-config
+      "lbipam.cilium.io/ips": "${GATEWAY_LB_IP}"
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: c0depool-proxy-config
   # addresses:
   #   - type: IPAddress
   #     value: ${GATEWAY_LB_IP}
