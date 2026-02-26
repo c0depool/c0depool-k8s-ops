@@ -31,25 +31,22 @@ spec:
         enabled: true
         storageClass: longhorn
         accessMode: ReadWriteOnce
-        size: 1Gi         
-    ingress:
+        size: 1Gi
+    route:
       main:
-        className: nginx
-        annotations: 
-          nginx.ingress.kubernetes.io/server-snippet: |
-            location ~* "^/admin" {         
-                deny all;
-                return 403;
-              }
-        hosts:
-          - host: &host "vault.${PUBLIC_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:            
-                  identifier: main
-                  port: http
-        tls: 
-          - secretName: "${CERT_SECRET_NAME}"
-            hosts:
-            - *host  
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - vault.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: vaultwarden
+              port: 80
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
