@@ -42,7 +42,7 @@ spec:
   rules:
     - backendRefs:
       - name: home-assistant
-        port: 443
+        port: 8123
       matches:
       - path:
           type: PathPrefix
