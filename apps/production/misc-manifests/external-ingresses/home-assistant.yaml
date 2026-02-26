@@ -11,7 +11,6 @@ spec:
       targetPort: 8123
   clusterIP: None
   type: ClusterIP
-
 ---
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
@@ -28,29 +27,40 @@ ports:
 endpoints:
   - addresses:
     - "${HA_SERVER}"
-
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
   name: home-assistant
   namespace: external-ingresses
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: nginx
+  hostnames:
+    - ha.${PUBLIC_DOMAIN}
+  parentRefs:
+    - name: c0depool-gateway
+      namespace: gateways
   rules:
-  - host: &host ha.${PUBLIC_DOMAIN}
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: home-assistant
-            port:
-              number: 8123
-  tls:
-    - secretName: "${CERT_SECRET_NAME}"
-      hosts:
-        - *host
+    - backendRefs:
+      - name: home-assistant
+        port: 443
+      matches:
+      - path:
+          type: PathPrefix
+          value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: home-assistant-tls-policy
+  namespace: external-ingresses
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: home-assistant
+  validation:
+    hostname: ha.${PUBLIC_DOMAIN}
+    caCertificateRefs:
+      - name: internal-ca
+        kind: Secret
+        group: ""
