@@ -89,5 +89,5 @@ spec:
     hostname: omv.internal.${PUBLIC_DOMAIN}
     caCertificateRefs:
       - name: internal-ca
-        kind: ConfigMap
+        kind: Secret
         group: ""
