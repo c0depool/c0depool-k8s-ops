@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: gateways
 resources:
   - namespace.yaml
+  - c0depool-proxy-config.yaml
   - c0depool-gateway.yaml
   - http-to-https-redirect.yaml
