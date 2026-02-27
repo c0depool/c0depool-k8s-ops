@@ -187,102 +187,123 @@ spec:
         server: "${NFS_SERVER}"
         path: /media/arr-media
 
-    ingress:
+    route:
       radarr:
-        className: "nginx"
-        hosts:
-          - host: &radarr radarr.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: radarr
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *radarr
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - radarr.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: radarr
+              port: 7878
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
       sonarr:
-        className: "nginx"
-        hosts:
-          - host: &sonarr sonarr.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: sonarr
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *sonarr
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - sonarr.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: sonarr
+              port: 8989
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
       lidarr:
-        className: "nginx"
-        hosts:
-          - host: &lidarr lidarr.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: lidarr
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *lidarr
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - lidarr.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: lidarr
+              port: 8686
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
       bazarr:
-        className: "nginx"
-        hosts:
-          - host: &bazarr bazarr.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: bazarr
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *bazarr
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - bazarr.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: bazarr
+              port: 6767
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
       prowlarr:
-        className: "nginx"
-        hosts:
-          - host: &prowlarr prowlarr.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: prowlarr
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *prowlarr
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - prowlarr.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: prowlarr
+              port: 9696
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
       rdt-client:
-        className: "nginx"
-        hosts:
-          - host: &rdt rdt.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: rdt-client
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *rdt
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - rdt.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: rdt-client
+              port: 6500
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
       aria2-pro:
-        className: "nginx"
-        hosts:
-          - host: &aria aria.internal.${PUBLIC_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: aria2-pro
-                  port: http
-        tls:
-          - secretName: ${CERT_SECRET_NAME}
-            hosts:
-            - *aria
+        enabled: true
+        kind: HTTPRoute
+        parentRefs:
+          - name: c0depool-gateway
+            namespace: gateways
+            sectionName: https
+        hostnames:
+          - aria.internal.${PUBLIC_DOMAIN}
+        rules:
+          - backendRefs:
+            - name: aria2-pro
+              port: 6800
+            matches:
+            - path:
+                type: PathPrefix
+                value: /
