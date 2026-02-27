@@ -4,10 +4,8 @@ resources:
   - sources
   - wireguard
   - gateways
-  #- wg-easy
   - databases
   - ingress-nginx
-  # - netdata
   # - intel-device-plugins
   - reflector
   - authentik
