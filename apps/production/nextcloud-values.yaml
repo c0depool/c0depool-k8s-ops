@@ -80,7 +80,30 @@ spec:
                   type: ReplaceFullPath
                   replaceFullPath: /remote.php/dav
                 statusCode: 301
-
+        # Block sensitive directory paths
+        - matches:
+            - path:
+                type: RegularExpression
+                value: "^/(build|tests|config|lib|3rdparty|templates|data)(/.*)?$"
+          filters:
+            - type: RequestRedirect
+              requestRedirect:
+                path:
+                  type: ReplaceFullPath
+                  replaceFullPath: /
+                statusCode: 301
+        # Block sensitive entry points
+        - matches:
+            - path:
+                type: RegularExpression
+                value: "^/(autotest|occ|issue|indie|db_|console)(/.*)?$"
+          filters:
+            - type: RequestRedirect
+              requestRedirect:
+                path:
+                  type: ReplaceFullPath
+                  replaceFullPath: /
+                statusCode: 301
         # Path rewrites for well-known
         - matches:
             - path:
@@ -102,7 +125,6 @@ spec:
                 path:
                   type: ReplaceFullPath
                   replaceFullPath: /index.php/.well-known/nodeinfo
-
         # Catch-all
         - matches:
             - path:
@@ -197,6 +219,8 @@ spec:
           storageClass: "longhorn"
       volumePermissions:
         enabled: true
+  # Fix for "RequestRedirect filter must not be used together with backendRefs" as the
+  # helm chart automatically injects backendRefs to every rule.
   postRenderers:
     - kustomize:
         patches:
@@ -208,3 +232,7 @@ spec:
                 path: /spec/rules/0/backendRefs
               - op: remove
                 path: /spec/rules/1/backendRefs
+              - op: remove
+                path: /spec/rules/2/backendRefs
+              - op: remove
+                path: /spec/rules/3/backendRefs
