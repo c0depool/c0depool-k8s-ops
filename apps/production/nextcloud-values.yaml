@@ -206,3 +206,14 @@ spec:
           storageClass: "longhorn"
       volumePermissions:
         enabled: true
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: HTTPRoute
+              name: nextcloud
+            patch: |
+              - op: remove
+                path: /spec/rules/0/backendRefs
+              - op: remove
+                path: /spec/rules/1/backendRefs
