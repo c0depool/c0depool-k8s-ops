@@ -30,7 +30,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: blog
         hostnames:
           - ${PUBLIC_BLOG_DOMAIN}
         rules:
