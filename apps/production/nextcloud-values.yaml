@@ -51,7 +51,7 @@ spec:
     httpRoute:
       enabled: true
       hostnames:
-        - nextcloud.${PUBLIC_DOMAIN}
+        - &host nextcloud.${PUBLIC_DOMAIN}
       parentRefs:
         - name: c0depool-gateway
           namespace: gateways
