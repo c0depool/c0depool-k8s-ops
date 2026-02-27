@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: mariadb
+  namespace: databases
+spec:
+  parentRefs:
+    - name: c0depool-gateway
+      namespace: gateways
+      sectionName: mariadb
+  rules:
+    - backendRefs:
+        - name: mariadb-cluster
+          port: 3306

@@ -6,3 +6,4 @@ resources:
   - crds-release.yaml
   - operator-release.yaml
   - cluster-release.yaml
+  - tcproute.yaml

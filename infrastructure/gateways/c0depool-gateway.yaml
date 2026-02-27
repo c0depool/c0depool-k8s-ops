@@ -36,3 +36,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    # mariadb
+    - name: mariadb
+      protocol: TCP
+      port: 3306
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: databases
