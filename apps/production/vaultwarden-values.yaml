@@ -57,4 +57,7 @@ spec:
             filters:
               - type: RequestRedirect
                 requestRedirect:
-                  statusCode: 403
+                  statusCode: 301
+                  path:
+                    type: ReplaceFullPath
+                    replaceFullPath: /
