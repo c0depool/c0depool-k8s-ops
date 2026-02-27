@@ -44,8 +44,8 @@ spec:
       hostname: &blog "${PUBLIC_BLOG_DOMAIN}"
       tls:
         mode: Terminate
-        certificateRef:
-          kind: Secret
+        certificateRefs:
+        - kind: Secret
           name: *blog
           group: core
       allowedRoutes:
