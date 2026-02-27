@@ -199,7 +199,7 @@ spec:
           - radarr.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: radarr
+            - name: arr-stack-radarr
               port: 7878
             matches:
             - path:
@@ -216,7 +216,7 @@ spec:
           - sonarr.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: sonarr
+            - name: arr-stack-sonarr
               port: 8989
             matches:
             - path:
@@ -233,7 +233,7 @@ spec:
           - lidarr.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: lidarr
+            - name: arr-stack-lidarr
               port: 8686
             matches:
             - path:
@@ -250,7 +250,7 @@ spec:
           - bazarr.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: bazarr
+            - name: arr-stack-bazarr
               port: 6767
             matches:
             - path:
@@ -267,7 +267,7 @@ spec:
           - prowlarr.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: prowlarr
+            - name: arr-stack-prowlarr
               port: 9696
             matches:
             - path:
@@ -284,7 +284,7 @@ spec:
           - rdt.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: rdt-client
+            - name: arr-stack-rdt-client
               port: 6500
             matches:
             - path:
@@ -301,7 +301,7 @@ spec:
           - aria.internal.${PUBLIC_DOMAIN}
         rules:
           - backendRefs:
-            - name: aria2-pro
+            - name: arr-stack-aria2-pro
               port: 6800
             matches:
             - path:
