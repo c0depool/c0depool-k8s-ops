@@ -5,7 +5,7 @@ resources:
   - wireguard
   - gateways
   - databases
-  - ingress-nginx
+  # - ingress-nginx
   # - intel-device-plugins
   - reflector
   - authentik
