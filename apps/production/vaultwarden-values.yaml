@@ -50,3 +50,11 @@ spec:
             - path:
                 type: PathPrefix
                 value: /
+          - matches:
+            - path:
+                type: PathPrefix
+                value: /admin
+            filters:
+              - type: RequestRedirect
+                requestRedirect:
+                  statusCode: 403
