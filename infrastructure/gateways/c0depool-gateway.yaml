@@ -38,6 +38,7 @@ spec:
           from: All
     # blog
     - name: blog
+      port: 443
       protocol: HTTPS
       hostname: &blog "${PUBLIC_BLOG_DOMAIN}"
       tls:
