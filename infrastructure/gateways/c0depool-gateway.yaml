@@ -47,6 +47,7 @@ spec:
         certificateRefs:
         - kind: Secret
           name: *blog
+          group: core
       allowedRoutes:
         namespaces:
           from: Selector
