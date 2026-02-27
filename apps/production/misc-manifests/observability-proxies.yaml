@@ -13,28 +13,26 @@ spec:
       targetPort: 3100
 
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
   name: loki
   namespace: wireguard
 spec:
-  ingressClassName: nginx
+  parentRefs:
+    - name: c0depool-gateway
+      namespace: gateways
+      sectionName: https
+  hostnames:
+    - loki.internal.${PUBLIC_DOMAIN}
   rules:
-    - host: loki.internal.${PUBLIC_DOMAIN}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: loki-proxy
-                port:
-                  number: 3100
-  tls:
-      - secretName: ${CERT_SECRET_NAME}
-        hosts:
-          - loki.internal.${PUBLIC_DOMAIN}
+    - backendRefs:
+      - name: loki-proxy
+        port: 3100
+      matches:
+      - path:
+          type: PathPrefix
+          value: /
 
 # Prometheus
 ---
@@ -52,25 +50,23 @@ spec:
       targetPort: 9090
 
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
   name: prometheus
   namespace: wireguard
 spec:
-  ingressClassName: nginx
+  parentRefs:
+    - name: c0depool-gateway
+      namespace: gateways
+      sectionName: https
+  hostnames:
+    - prom.internal.${PUBLIC_DOMAIN}
   rules:
-    - host: prom.internal.${PUBLIC_DOMAIN}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: prometheus-proxy
-                port:
-                  number: 9090
-  tls:
-      - secretName: ${CERT_SECRET_NAME}
-        hosts:
-          - prom.internal.${PUBLIC_DOMAIN}
+    - backendRefs:
+      - name: prometheus-proxy
+        port: 9090
+      matches:
+      - path:
+          type: PathPrefix
+          value: /
