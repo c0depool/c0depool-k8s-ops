@@ -7,7 +7,7 @@ spec:
   infrastructure:
     annotations:
       "lbipam.cilium.io/ips": "${GATEWAY_LB_IP}"
-      "cert-manager.io/issuer": "${CERT_ISSUER}" 
+      "cert-manager.io/cluster-issuer": "${CERT_ISSUER}" 
     parametersRef:
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
