@@ -92,9 +92,6 @@ spec:
                 path:
                   type: ReplaceFullPath
                   replaceFullPath: /index.php/.well-known/webfinger
-          backendRefs:
-            - name: nextcloud
-              port: 8080
         - matches:
             - path:
                 type: Exact
@@ -105,18 +102,12 @@ spec:
                 path:
                   type: ReplaceFullPath
                   replaceFullPath: /index.php/.well-known/nodeinfo
-          backendRefs:
-            - name: nextcloud
-              port: 8080
 
         # Catch-all
         - matches:
             - path:
                 type: PathPrefix
                 value: "/"
-          backendRefs:
-            - name: nextcloud
-              port: 8080
 
     cronjob:
       enabled: true
