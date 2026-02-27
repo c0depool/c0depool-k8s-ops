@@ -130,6 +130,12 @@ spec:
             - path:
                 type: PathPrefix
                 value: "/"
+          filters:
+            - type: ResponseHeaderModifier
+              responseHeaderModifier:
+                add:
+                  - name: Strict-Transport-Security
+                    value: "max-age=15552000; includeSubDomains"
 
     cronjob:
       enabled: true
