@@ -8,6 +8,9 @@ spec:
   - name: c0depool-gateway
     namespace: gateways
     sectionName: http
+  - name: c0depool-gateway-internal
+    namespace: gateways
+    sectionName: http
   rules:
   - filters:
     - type: RequestRedirect
