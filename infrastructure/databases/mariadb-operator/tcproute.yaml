@@ -5,7 +5,7 @@ metadata:
   namespace: databases
 spec:
   parentRefs:
-    - name: c0depool-gateway
+    - name: c0depool-gateway-internal
       namespace: gateways
       sectionName: mariadb
   rules:

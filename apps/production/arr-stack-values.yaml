@@ -192,9 +192,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - radarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -209,9 +209,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - sonarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -226,9 +226,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - lidarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -243,9 +243,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - bazarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -260,9 +260,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - prowlarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -277,9 +277,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - rdt.internal.${PUBLIC_DOMAIN}
         rules:
@@ -294,9 +294,9 @@ spec:
         enabled: true
         kind: HTTPRoute
         parentRefs:
-          - name: c0depool-gateway
+          - name: c0depool-gateway-internal
             namespace: gateways
-            sectionName: internal
+            sectionName: https
         hostnames:
           - aria.internal.${PUBLIC_DOMAIN}
         rules:
