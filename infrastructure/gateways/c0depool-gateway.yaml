@@ -11,9 +11,6 @@ spec:
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
       name: c0depool-proxy-config
-  # addresses:
-  #   - type: IPAddress
-  #     value: ${GATEWAY_LB_IP}
   gatewayClassName: envoy-gateway
   listeners:
     # HTTP
@@ -36,7 +33,20 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-    # blog
+    # Internal apps
+    - name: internal
+      port: 443
+      protocol: HTTPS
+      hostname: "*.internal.${PUBLIC_DOMAIN}"
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: ${CERT_SECRET_NAME}
+      allowedRoutes:
+        namespaces:
+          from: All
+    # Blog
     - name: blog
       port: 443
       protocol: HTTPS
@@ -52,7 +62,7 @@ spec:
           selector:
             matchLabels:
               kubernetes.io/metadata.name: c0depool-blog
-    # mariadb
+    # MariaDB
     - name: mariadb
       protocol: TCP
       port: 3306
