@@ -20,9 +20,9 @@ metadata:
   namespace: wireguard
 spec:
   parentRefs:
-    - name: c0depool-gateway
+    - name: c0depool-gateway-internal
       namespace: gateways
-      sectionName: internal
+      sectionName: https
   hostnames:
     - loki.internal.${PUBLIC_DOMAIN}
   rules:
@@ -57,9 +57,9 @@ metadata:
   namespace: wireguard
 spec:
   parentRefs:
-    - name: c0depool-gateway
+    - name: c0depool-gateway-internal
       namespace: gateways
-      sectionName: internal
+      sectionName: https
   hostnames:
     - prom.internal.${PUBLIC_DOMAIN}
   rules:
