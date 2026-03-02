@@ -22,7 +22,7 @@ spec:
   parentRefs:
     - name: c0depool-gateway
       namespace: gateways
-      sectionName: https
+      sectionName: internal
   hostnames:
     - loki.internal.${PUBLIC_DOMAIN}
   rules:
@@ -59,7 +59,7 @@ spec:
   parentRefs:
     - name: c0depool-gateway
       namespace: gateways
-      sectionName: https
+      sectionName: internal
   hostnames:
     - prom.internal.${PUBLIC_DOMAIN}
   rules:

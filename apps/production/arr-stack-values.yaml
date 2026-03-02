@@ -194,7 +194,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - radarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -211,7 +211,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - sonarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -228,7 +228,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - lidarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -245,7 +245,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - bazarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -262,7 +262,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - prowlarr.internal.${PUBLIC_DOMAIN}
         rules:
@@ -279,7 +279,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - rdt.internal.${PUBLIC_DOMAIN}
         rules:
@@ -296,7 +296,7 @@ spec:
         parentRefs:
           - name: c0depool-gateway
             namespace: gateways
-            sectionName: https
+            sectionName: internal
         hostnames:
           - aria.internal.${PUBLIC_DOMAIN}
         rules:
