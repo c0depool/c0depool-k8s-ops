@@ -5,4 +5,5 @@ resources:
   - namespace.yaml
   - c0depool-proxy-config.yaml
   - c0depool-gateway.yaml
+  - c0depool-gateway-internal.yaml
   - http-to-https-redirect.yaml
