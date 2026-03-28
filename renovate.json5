@@ -212,5 +212,19 @@
         'https://helm.mariadb.com/mariadb-operator',
       ],
     },
+    {
+      matchDatasources: [
+        'helm',
+      ],
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchPackageNames: [
+        'valkey',
+      ],
+      registryUrls: [
+        'https://valkey.io/valkey-helm/',
+      ],
+    },
   ],
 }
