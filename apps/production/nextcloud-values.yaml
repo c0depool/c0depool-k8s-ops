@@ -188,6 +188,9 @@ spec:
       extraVolumeMounts:
         - name: nfs
           mountPath: "/nextcloud-nfs"
+      podSecurityContext:
+        fsGroup: 33
+        fsGroupChangePolicy: OnRootMismatch
     nginx:
       enabled: true
     internalDatabase:
