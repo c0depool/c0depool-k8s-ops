@@ -13,6 +13,6 @@ data:
   GATEWAY_LB_IP: 192.168.0.194
   MARIADB_SERVICE: mariadb-cluster.databases.svc.cluster.local
   IMMICH_POSTGRES_SERVICE: immich-postgres-rw.databases.svc.cluster.local
-  REDIS_SERVICE: redis-master.redis.svc.cluster.local
+  REDIS_SERVICE: valkey.valkey.svc.cluster.local
   AUTHENTIK_OUTPOST_SERVICE: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local
   PUBLIC_BLOG_DOMAIN: surajremanan.com
