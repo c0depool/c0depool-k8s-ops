@@ -210,21 +210,25 @@ spec:
       initialDelaySeconds: 60
       periodSeconds: 30
       failureThreshold: 10
-    redis:
+    # redis:
+    #   enabled: true
+    #   auth:
+    #     enabled: true
+    #     password: "${REDIS_AUTH}"
+    #   master:
+    #     persistence:
+    #       size: 1Gi
+    #       storageClass: "longhorn"
+    #   replica:
+    #     persistence:
+    #       size: 1Gi
+    #       storageClass: "longhorn"
+    #   volumePermissions:
+    #     enabled: true
+    externalRedis:
       enabled: true
-      auth:
-        enabled: true
-        password: "${REDIS_AUTH}"
-      master:
-        persistence:
-          size: 1Gi
-          storageClass: "longhorn"
-      replica:
-        persistence:
-          size: 1Gi
-          storageClass: "longhorn"
-      volumePermissions:
-        enabled: true
+      host: "valkey.valkey.svc.cluster.local"
+      password: "${REDIS_AUTH}"
   # Fix for "RequestRedirect filter must not be used together with backendRefs" as the
   # helm chart automatically injects backendRefs to every rule.
   postRenderers:
