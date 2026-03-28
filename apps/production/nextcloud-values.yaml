@@ -189,7 +189,7 @@ spec:
         - name: nfs
           mountPath: "/nextcloud-nfs"
       podSecurityContext:
-        fsGroup: 33
+        fsGroup: 82
         fsGroupChangePolicy: OnRootMismatch
     nginx:
       enabled: true
