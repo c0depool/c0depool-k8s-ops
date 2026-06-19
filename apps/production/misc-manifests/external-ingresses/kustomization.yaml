@@ -5,4 +5,4 @@ resources:
   - internal-ca-secret.yaml
   - adguard.yaml
   - openmediavault.yaml
-  - home-assistant.yaml
+  # - home-assistant.yaml
