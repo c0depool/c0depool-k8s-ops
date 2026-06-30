@@ -204,6 +204,7 @@ spec:
     persistence:
       enabled: true
       storageClass: "longhorn"
+      size: 20Gi
     startupProbe:
       enabled: true
       periodSeconds: 30
