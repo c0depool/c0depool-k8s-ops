@@ -220,18 +220,18 @@ spec:
       password: "${REDIS_AUTH}"
   # Fix for "RequestRedirect filter must not be used together with backendRefs" as the
   # helm chart automatically injects backendRefs to every rule.
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              kind: HTTPRoute
-              name: nextcloud
-            patch: |
-              - op: remove
-                path: /spec/rules/0/backendRefs
-              - op: remove
-                path: /spec/rules/1/backendRefs
-              - op: remove
-                path: /spec/rules/2/backendRefs
-              - op: remove
-                path: /spec/rules/3/backendRefs
+  # postRenderers:
+  #   - kustomize:
+  #       patches:
+  #         - target:
+  #             kind: HTTPRoute
+  #             name: nextcloud
+  #           patch: |
+  #             - op: remove
+  #               path: /spec/rules/0/backendRefs
+  #             - op: remove
+  #               path: /spec/rules/1/backendRefs
+  #             - op: remove
+  #               path: /spec/rules/2/backendRefs
+  #             - op: remove
+  #               path: /spec/rules/3/backendRefs
