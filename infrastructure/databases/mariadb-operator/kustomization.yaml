@@ -7,3 +7,4 @@ resources:
   - operator-release.yaml
   - cluster-release.yaml
   - tcproute.yaml
+  - cluster-backup.yaml

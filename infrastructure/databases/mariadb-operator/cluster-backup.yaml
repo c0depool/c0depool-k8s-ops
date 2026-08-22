@@ -1,0 +1,27 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: mariadb-cluster-backup
+  namespace: databases
+spec:
+  mariaDbRef:
+    name: mariadb-cluster
+  schedule:
+    cron: "0 6 * * *"
+  maxRetention: 168h   # 7 days
+  storage:
+    persistentVolumeClaim:
+      storageClassName: longhorn
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+  compression: gzip
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
