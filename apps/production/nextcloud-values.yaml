@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: "9.2.5"
+      version: "9.2.6"
   values:
     image:
       repository: nextcloud
